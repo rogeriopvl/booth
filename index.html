@@ -9,13 +9,20 @@
       body {
         font-family: sans-serif;
       }
+
+      button {
+        padding: 0.5em 1em;
+        font-size: 1.5em;
+      }
     </style>
   </head>
 
   <body>
-    <h1>the power of navigator.getUserMedia() to take base64 pics!</h1>
+    <h1><a target="_blank" href="https://github.com/josepedrodias/booth">BOOTH</a>
+    - the power of navigator.getUserMedia() to take pics!</h1>
 
     <button id="smile">smile</button>
+    <button id="smile2">smile every sec</button>
     <br/>
 
     <script type="text/javascript" src="booth.js"></script>
@@ -27,24 +34,40 @@
         var api = booth({
           dims: [160, 120],
           onReadyFail: function(err) {
-            if (err) { console.log(err); window.alert(err); }
+            if (err) {
+              window.alert('BOOTH: ' + (err.name || err) );
+            }
           }
         });
+
+        var smileFn = function() {
+          var base64Img = api.takePicture();
+          var imgEl = document.createElement('img');
+          imgEl.src = base64Img;
+          document.body.appendChild(imgEl);
+        };
+
+        var timer;
 
         document.getElementById('smile').addEventListener('click', function() {
-          if (api.isReady()) {
-            var imgB64 = api.takePicture();
-            //console.log(imgB64);
-            //console.log(imgB64.length);
-            var imgEl = document.createElement('img');
-            imgEl.src = imgB64;
-            document.body.appendChild(imgEl);
-          }
-          else {
-            window.alert('please accept the notification first');
-          }
+            if (api.isReady()) {
+              smileFn();
+            }
+            else {
+              window.alert('please accept the webcam notification first');
+            }
         });
 
+        document.getElementById('smile2').addEventListener('click', function() {
+            if (!api.isReady()) { return; }
+            if (timer) {
+              clearInterval(timer);
+              timer = undefined;
+            }
+            else {
+              timer = setInterval(smileFn, 1000);
+            }
+        });
       })();
     </script>
   </body>
