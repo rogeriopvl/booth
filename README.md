@@ -1,6 +1,6 @@
 Get on-demand webcam pictures via `navigator.getUserMedia()`.
 
-Check [example](.)
+Check [example](http://rawgit.com/JosePedroDias/booth/master/index.html)
 
 ## instantiation
 
