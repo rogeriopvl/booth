@@ -1,0 +1,27 @@
+{
+  "name": "booth",
+  "main": "booth.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/JosePedroDias/booth",
+  "authors": [
+    "José Pedro <jose.pedro.dias@gmail.com>"
+  ],
+  "description": "Get on-demand webcam pictures via navigator.getUserMedia().",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "webcam",
+    "getUserMedia",
+    "booth",
+    "picture"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
